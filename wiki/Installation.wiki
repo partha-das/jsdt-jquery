@@ -1,14 +1,11 @@
 #labels Installation,p2,update-site
 #How to install jsdt-jquery
 
-= Installing the plugin =
+= Installing the Plugin =
 
 Use the following update site URL [https://svn.codespot.com/a/eclipselabs.org/jsdt-jquery/updatesite]
 
 
-= Enabling the plugin =
+= Enabling the Plugin =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+  * Convert you project to a JavaScript project using {{{Project}}}→{{{Configure}}}→{{{Convert to JavaScript Project..}}}
