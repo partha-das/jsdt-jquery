@@ -1,5 +1,5 @@
+#summary How to install jsdt-jquery
 #labels Installation,p2,update-site
-#How to install jsdt-jquery
 
 = Installing the Plugin =
 
@@ -8,4 +8,8 @@ Use the following update site URL [https://svn.codespot.com/a/eclipselabs.org/js
 
 = Enabling the Plugin =
 
-  * Convert you project to a JavaScript project using {{{Project}}}→{{{Configure}}}→{{{Convert to JavaScript Project..}}}
+ * Convert you project to a JavaScript project if it is not already one {{{Project}}} → {{{Configure}}} → {{{Convert to JavaScript Project..}}}
+ * Add a JavaScript Library {{{Project}}} → {{{Properties}}} → {{{JavaScript}}} → {{{Include Path}}} → {{{Libraries}}} → {{{Add JavaScript Library...}}}
+ * Select jQuery {{{jQuery Library}}} → {{{Next}}}
+ * Select the version of jQuery you want and hit {{{Finish}}}
+ * jQuery should now appear in the list of libraries
