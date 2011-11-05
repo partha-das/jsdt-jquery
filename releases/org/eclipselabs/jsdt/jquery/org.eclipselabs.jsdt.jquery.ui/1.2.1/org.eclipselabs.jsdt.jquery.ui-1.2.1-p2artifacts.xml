@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='1'>
+  <artifact classifier='osgi.bundle' id='org.eclipselabs.jsdt.jquery.ui' version='1.2.1'>
+    <properties size='6'>
+      <property name='artifact.size' value='12971'/>
+      <property name='download.size' value='12971'/>
+      <property name='download.md5' value='5475f67c347a5fccbf09690aec3d7055'/>
+      <property name='maven-groupId' value='org.eclipselabs.jsdt.jquery'/>
+      <property name='maven-artifactId' value='org.eclipselabs.jsdt.jquery.ui'/>
+      <property name='maven-version' value='1.2.1'/>
+    </properties>
+  </artifact>
+</artifacts>
