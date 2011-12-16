@@ -3,7 +3,7 @@
 
 = Installing the Plugin =
 
-Use the following update site URL [https://svn.codespot.com/a/eclipselabs.org/jsdt-jquery/updatesite]
+Use the following update site URL [http://svn.codespot.com/a/eclipselabs.org/jsdt-jquery/updatesite]
 
 
 = Enabling the Plugin =
