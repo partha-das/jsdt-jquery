@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='1'>
+  <artifact classifier='org.eclipse.update.feature' id='org.eclipselabs.jsdt.jquery_feature' version='1.4.0'>
+    <properties size='7'>
+      <property name='artifact.size' value='6529'/>
+      <property name='download.size' value='6529'/>
+      <property name='download.md5' value='3d02bc7bd73b5f036c419a288f5a64b7'/>
+      <property name='maven-groupId' value='org.eclipselabs.jsdt.jquery'/>
+      <property name='maven-artifactId' value='org.eclipselabs.jsdt.jquery_feature'/>
+      <property name='maven-version' value='1.4.0'/>
+      <property name='download.contentType' value='application/zip'/>
+    </properties>
+  </artifact>
+</artifacts>
