@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <units size='2'>
-  <unit id='org.eclipselabs.jsdt.jquery_feature.feature.group' version='1.4.1.201204120507' singleton='false'>
-    <update id='org.eclipselabs.jsdt.jquery_feature.feature.group' range='[0.0.0,1.4.1.201204120507)' severity='0'/>
+  <unit id='org.eclipselabs.jsdt.jquery_feature.feature.group' version='1.4.1.201204120518' singleton='false'>
+    <update id='org.eclipselabs.jsdt.jquery_feature.feature.group' range='[0.0.0,1.4.1.201204120518)' severity='0'/>
     <properties size='10'>
       <property name='org.eclipse.equinox.p2.name' value='%feature.name'/>
       <property name='org.eclipse.equinox.p2.description' value='Provides auto completion support for jQuery.'/>
@@ -15,13 +15,13 @@
       <property name='df_LT.feature.name' value='JSDT jQuery Integration'/>
     </properties>
     <provides size='2'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.jsdt.jquery_feature.feature.group' version='1.4.1.201204120507'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.jsdt.jquery_feature.feature.group' version='1.4.1.201204120518'/>
       <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
     </provides>
     <requires size='3'>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.jsdt.jquery.api' range='[1.4.1.201204120507,1.4.1.201204120507]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.jsdt.jquery.ui' range='[1.4.1.201204120507,1.4.1.201204120507]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.jsdt.jquery_feature.feature.jar' range='[1.4.1.201204120507,1.4.1.201204120507]'>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.jsdt.jquery.api' range='[1.4.1.201204120518,1.4.1.201204120518]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.jsdt.jquery.ui' range='[1.4.1.201204120518,1.4.1.201204120518]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.jsdt.jquery_feature.feature.jar' range='[1.4.1.201204120518,1.4.1.201204120518]'>
         <filter>
           (org.eclipse.update.install.features=true)
         </filter>
@@ -34,7 +34,7 @@
       </license>
     </licenses>
   </unit>
-  <unit id='org.eclipselabs.jsdt.jquery_feature.feature.jar' version='1.4.1.201204120507'>
+  <unit id='org.eclipselabs.jsdt.jquery_feature.feature.jar' version='1.4.1.201204120518'>
     <properties size='9'>
       <property name='org.eclipse.equinox.p2.name' value='%feature.name'/>
       <property name='org.eclipse.equinox.p2.description' value='Provides auto completion support for jQuery.'/>
@@ -47,15 +47,15 @@
       <property name='maven-version' value='1.4.1'/>
     </properties>
     <provides size='3'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.jsdt.jquery_feature.feature.jar' version='1.4.1.201204120507'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.jsdt.jquery_feature.feature.jar' version='1.4.1.201204120518'/>
       <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
-      <provided namespace='org.eclipse.update.feature' name='org.eclipselabs.jsdt.jquery_feature' version='1.4.1.201204120507'/>
+      <provided namespace='org.eclipse.update.feature' name='org.eclipselabs.jsdt.jquery_feature' version='1.4.1.201204120518'/>
     </provides>
     <filter>
       (org.eclipse.update.install.features=true)
     </filter>
     <artifacts size='1'>
-      <artifact classifier='org.eclipse.update.feature' id='org.eclipselabs.jsdt.jquery_feature' version='1.4.1.201204120507'/>
+      <artifact classifier='org.eclipse.update.feature' id='org.eclipselabs.jsdt.jquery_feature' version='1.4.1.201204120518'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>
