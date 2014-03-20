@@ -161,7 +161,7 @@ jQueryObject.prototype.clone = function(withDataAndEvents) {};
  */
 jQueryObject.prototype.context = null;
 /**
- * Get the value of style properties for the first element in the set of matched elements.
+ * Get the computed style properties for the first element in the set of matched elements.
  * @since 1.0
  * @param {String} propertyName A CSS property.
  * @returns {String}
@@ -255,14 +255,14 @@ jQueryObject.prototype.find = function(selector) {};
  */
 jQueryObject.prototype.focus = function(handler) {};
 /**
- * Retrieve one of the DOM elements matched by the jQuery object.
+ * Retrieve one of the elements matched by the jQuery object.
  * @since 1.0
  * @param {Integer} index A zero-based integer indicating which element to retrieve.
  * @returns {Element}
  */
 jQueryObject.prototype.get = function(index) {};
 /**
- * Retrieve the DOM elements matched by the jQuery object.
+ * Retrieve the elements matched by the jQuery object.
  * @since 1.0
  * @returns {Array}
  */
@@ -270,7 +270,7 @@ jQueryObject.prototype.get = function() {};
 /**
  * Get the current computed height for the first element in the set of matched elements.
  * @since 1.0
- * @returns {Integer}
+ * @returns {Number}
  */
 jQueryObject.prototype.height = function() {};
 /**
@@ -630,10 +630,10 @@ jQueryObject.prototype.text = function() {};
 /**
  * Set the content of each element in the set of matched elements to the specified text.
  * @since 1.0
- * @param {String} textString A string of text to set as the content of each matched element.
+ * @param {Boolean} text The text to set as the content of each matched element. When Number or Boolean is supplied, it will be converted to a String representation.
  * @returns {jQueryObject}
  */
-jQueryObject.prototype.text = function(textString) {};
+jQueryObject.prototype.text = function(text) {};
 /**
  * Bind two or more handlers to the matched elements, to be executed on alternate clicks.
  * @since 1.0
@@ -669,7 +669,7 @@ jQueryObject.prototype.trigger = function(eventType, extraParameters) {};
 /**
  * Remove a previously-attached event handler from the elements.
  * @since 1.0
- * @param {String} [eventType] A string containing a JavaScript event type, such as <code>click</code> or <code>submit</code>.
+ * @param {String} eventType A string containing a JavaScript event type, such as <code>click</code> or <code>submit</code>.
  * @param {Function} [handler] The function that is to be no longer executed.
  * @returns {jQueryObject}
  */
@@ -689,14 +689,14 @@ jQueryObject.prototype.val = function() {};
 /**
  * Set the value of each element in the set of matched elements.
  * @since 1.0
- * @param {Array} value A string of text or an array of strings corresponding to the value of each matched element to set as selected/checked.
+ * @param {String} value A string of text or an array of strings corresponding to the value of each matched element to set as selected/checked.
  * @returns {jQueryObject}
  */
 jQueryObject.prototype.val = function(value) {};
 /**
  * Get the current computed width for the first element in the set of matched elements.
  * @since 1.0
- * @returns {Integer}
+ * @returns {Number}
  */
 jQueryObject.prototype.width = function() {};
 /**

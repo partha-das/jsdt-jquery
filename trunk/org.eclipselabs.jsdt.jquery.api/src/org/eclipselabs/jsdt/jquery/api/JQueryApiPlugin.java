@@ -26,7 +26,7 @@ public final class JQueryApiPlugin extends Plugin {
 
   static final int MAX_MINOR_1 = 10;
   
-  static final int MAX_MINOR_2 = 0;
+  static final int MAX_MINOR_2 = 1;
 
   static final List<Version> ALL_VERSIONS;
   
