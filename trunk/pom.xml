@@ -75,52 +75,10 @@
 
   <reporting>
     <plugins>
-      <!--
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>2.3.1</version>
-        <configuration>
-          <effort>Max</effort>
-          <threshold>Low</threshold>
-          <xmlOutput>true</xmlOutput>
-          <findbugsXmlOutput>true</findbugsXmlOutput>
-          <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
-        </configuration>
-      </plugin>
-      -->
-      <!--
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.5</version>
-        <configuration>
-          <configLocation>
-            checkstyle-config-cs5.xml 
-          </configLocation>
-        </configuration>
-      </plugin>
-      -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>cobertura-maven-plugin</artifactId>
-        <version>2.5.2</version>
-        <configuration>
-          <formats>
-            <format>xml</format>
-            <format>html</format>
-          </formats>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>jdepend-maven-plugin</artifactId>
-        <version>2.0-beta-2</version>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9</version>
+        <version>2.9.1</version>
         <configuration>
           <show>package</show>
           <version>true</version>
@@ -128,21 +86,6 @@
           <links>
             <link>http://java.sun.com/javase/6/docs/api/</link>
           </links>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>taglist-maven-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-          <tags>
-            <tag>@deprecated</tag>
-            <tag>@todo</tag>
-            <tag>FIXME</tag>
-            <tag>TODO</tag>
-            <tag>XXX</tag>
-            <tag>REVIEW</tag>
-          </tags>
         </configuration>
       </plugin>
     </plugins>
@@ -154,7 +97,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.0</version>
+        <version>3.1</version>
         <configuration>
           <source>${source.version}</source>
           <target>${target.version}</target>
@@ -251,7 +194,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.4</version>
+          <version>2.5</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -261,12 +204,12 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.9</version>
+          <version>2.9.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-install-plugin</artifactId>
-          <version>2.4</version>
+          <version>2.5.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -276,7 +219,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.7</version>
+          <version>2.8.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -294,44 +237,8 @@
     </extensions>
   </build>
 
-  <profiles>
-    <!-- Hudson by default defines a property BUILD_NUMBER which is used to enable the profile. -->
-    <profile>
-      <id>hudson</id>
-      <activation>
-        <property>
-          <name>BUILD_NUMBER</name>
-        </property>
-      </activation>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>cobertura-maven-plugin</artifactId>
-              <version>2.5.1</version>
-              <configuration>
-                <formats>
-                  <format>xml</format>
-                </formats>
-              </configuration>
-              <executions>
-                <execution>
-                  <phase>package</phase>
-                  <goals>
-                    <goal>cobertura</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
-    </profile>
-  </profiles>
-
   <properties>
-    <tycho-version>0.18.1</tycho-version>
+    <tycho-version>0.20.0</tycho-version>
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
     <source.version>1.6</source.version>
