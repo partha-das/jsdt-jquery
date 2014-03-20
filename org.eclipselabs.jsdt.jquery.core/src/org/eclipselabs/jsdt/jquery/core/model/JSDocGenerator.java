@@ -69,15 +69,15 @@ public class JSDocGenerator extends WriterSupport {
     this.maximumVersion = maximumVersion;
 
     this.writeJQueryObject();
-    this.writeLine("jQueryObject.prototype = {");
+    this.openPrototype(JQUERY_OBJECT_PROTOTYPE);
     this.visitAll(members, Filters.INSTANCE_SIDE, new JQueryInstanceSideWriter());
-    this.writeLine("}");
+    this.closePrototype();
 
     this.writeJQueryEvent();
     
-    this.writeLine("jQueryEvent.prototype = {");
+    this.openPrototype(JQUERY_EVENT_PROTOTYPE);
     this.visitAll(members, Filters.EVENT, new JQueryEventWriter());
-    this.writeLine("}");
+    this.closePrototype();
 
     Function constructor = this.findConstructor(members);
     this.writeConstructor(constructor);
@@ -88,6 +88,16 @@ public class JSDocGenerator extends WriterSupport {
     //    for (JQueryMember member : members) {
     //      member.accept(classVisitor);
     //    }
+  }
+  
+  private void openPrototype(String ownerName) {
+    this.write(ownerName);
+    this.write(" = {");
+    this.writeNewLine();
+  }
+  
+  private void closePrototype() {
+    this.writeLine("};");
   }
 
   private Function findConstructor(Collection<JQueryMember> members) {
@@ -206,7 +216,7 @@ public class JSDocGenerator extends WriterSupport {
 
     @Override
     public Void visitFuntion(Function function) {
-      JSDocGenerator.this.visitJQueryClassSideFunction(function, this.jQueryGlobal);
+      JSDocGenerator.this.visitJQueryClassSideFunction(function);
       return null;
     }
 
@@ -219,30 +229,30 @@ public class JSDocGenerator extends WriterSupport {
   }
 
   void visitJQueryEventFunction(Function function) {
-    this.writeFunction(function, JQUERY_EVENT_PROTOTYPE);
+    this.writeFunction(function);
   }
 
   void visitJQueryEventeProperty(Property property) {
-    this.writeProperty(property, JQUERY_EVENT_PROTOTYPE);
+    this.writeProperty(property);
   }
 
   void visitJQueryInstanceSideFunction(Function function) {
-    this.writeFunction(function, JQUERY_OBJECT_PROTOTYPE);
+    this.writeFunction(function);
   }
 
   void visitJQueryInstanceSideProperty(Property property) {
-    this.writeProperty(property, JQUERY_OBJECT_PROTOTYPE);
+    this.writeProperty(property);
   }
 
-  void visitJQueryClassSideFunction(Function function, String jQueryGlobal) {
-    this.writeFunction(function, jQueryGlobal);
+  void visitJQueryClassSideFunction(Function function) {
+    this.writeFunction(function);
   }
 
   void visitJQueryClassSideProperty(Property property, String jQueryGlobal) {
-    this.writeProperty(property, jQueryGlobal);
+    this.writeProperty(property);
   }
 
-  private void writeFunction(Function function, String owner) {
+  private void writeFunction(Function function) {
     if (!function.isPresentIn(this.maximumVersion)) {
       return;
     }
@@ -290,15 +300,9 @@ public class JSDocGenerator extends WriterSupport {
           this.write(argumentName);
         }
       }
-      // TODO not on last
       this.write(") {},");
       this.writeNewLine();
     }
-  }
-
-  private void writeIdentifier(String owner) {
-    this.write(owner);
-    this.write('.');
   }
 
   private void writeSignature(Function function, FunctionSignature signature, String suffix) {
@@ -420,7 +424,7 @@ public class JSDocGenerator extends WriterSupport {
     }
   }
 
-  private void writeProperty(Property property, String owner) {
+  private void writeProperty(Property property) {
     if (!property.isPresentIn(this.maximumVersion)) {
       return;
     }
@@ -449,7 +453,6 @@ public class JSDocGenerator extends WriterSupport {
     }
     this.write(defaultValue);
 
-    // TODO not on last
     this.write(',');
     this.writeNewLine();
   }
