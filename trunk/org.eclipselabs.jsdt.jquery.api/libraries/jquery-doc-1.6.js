@@ -1129,7 +1129,7 @@ wrapAll: function(wrappingElement) {},
  * @returns {jQueryObject}
  */
 wrapInner: function(wrappingElement) {},
-}
+};
 function jQueryEvent(){};
 jQueryEvent = { };
 jQueryEvent.prototype = {
@@ -1232,7 +1232,7 @@ which: 1,
  * @type {Boolean}
  */
 metaKey: true,
-}
+};
 /**
  * Accepts a string containing a CSS selector which is then used to match a set of elements.
  * @returns {jQueryObject}
