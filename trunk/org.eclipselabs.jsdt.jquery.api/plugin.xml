@@ -52,6 +52,10 @@
             id="org.eclipselabs.jsdt.jquery.core.CoflictLibrary_2.0">
       </JsGlobalScopeContainerInitializer>
       <JsGlobalScopeContainerInitializer
+            class="org.eclipselabs.jsdt.jquery.api.js.JQuery21ConflictGlobalScopeContainerInitializer"
+            id="org.eclipselabs.jsdt.jquery.core.CoflictLibrary_2.1">
+      </JsGlobalScopeContainerInitializer>
+      <JsGlobalScopeContainerInitializer
             class="org.eclipselabs.jsdt.jquery.api.js.JQuery10NoConflictGlobalScopeContainerInitializer"
             id="org.eclipselabs.jsdt.jquery.core.NoCoflictLibrary_1.0">
       </JsGlobalScopeContainerInitializer>
@@ -98,6 +102,10 @@
       <JsGlobalScopeContainerInitializer
             class="org.eclipselabs.jsdt.jquery.api.js.JQuery20NoConflictGlobalScopeContainerInitializer"
             id="org.eclipselabs.jsdt.jquery.core.NoCoflictLibrary_2.0">
+      </JsGlobalScopeContainerInitializer>
+      <JsGlobalScopeContainerInitializer
+            class="org.eclipselabs.jsdt.jquery.api.js.JQuery21NoConflictGlobalScopeContainerInitializer"
+            id="org.eclipselabs.jsdt.jquery.core.NoCoflictLibrary_2.1">
       </JsGlobalScopeContainerInitializer>
    </extension>
    <extension
