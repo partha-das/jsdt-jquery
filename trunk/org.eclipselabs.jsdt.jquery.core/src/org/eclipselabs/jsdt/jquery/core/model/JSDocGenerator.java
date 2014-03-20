@@ -69,10 +69,15 @@ public class JSDocGenerator extends WriterSupport {
     this.maximumVersion = maximumVersion;
 
     this.writeJQueryObject();
+    this.writeLine("jQueryObject.prototype = {");
     this.visitAll(members, Filters.INSTANCE_SIDE, new JQueryInstanceSideWriter());
+    this.writeLine("}");
 
     this.writeJQueryEvent();
+    
+    this.writeLine("jQueryEvent.prototype = {");
     this.visitAll(members, Filters.EVENT, new JQueryEventWriter());
+    this.writeLine("}");
 
     Function constructor = this.findConstructor(members);
     this.writeConstructor(constructor);
@@ -139,7 +144,7 @@ public class JSDocGenerator extends WriterSupport {
 
   private void writeJQueryEvent() {
     this.writeLine("function " + JQueryMember.JQUERY_EVENT + "(){};");
-    this.writeLine(JQueryMember.JQUERY_EVENT + " = new Object();");
+    this.writeLine(JQueryMember.JQUERY_EVENT + " = { };");
   }
 
 
@@ -271,9 +276,8 @@ public class JSDocGenerator extends WriterSupport {
       //    i += 1;
       //  }
       //}
-      this.writeIdentifier(owner);
       this.write(function.getName());
-      this.write(" = function(");
+      this.write(": function(");
       if (!signatures.isEmpty()) {
         FunctionSignature signature = signatures.get(0);
         boolean first = true;
@@ -286,7 +290,8 @@ public class JSDocGenerator extends WriterSupport {
           this.write(argumentName);
         }
       }
-      this.write(") {};");
+      // TODO not on last
+      this.write(") {},");
       this.writeNewLine();
     }
   }
@@ -431,9 +436,8 @@ public class JSDocGenerator extends WriterSupport {
     }
     this.writeEnd();
 
-    this.writeIdentifier(owner);
     this.write(property.getName());
-    this.write(" = ");
+    this.write(": ");
 
     String defaultValue = DEFAULT_VALUES.get(returnType);
     if (defaultValue == null) {
@@ -445,7 +449,8 @@ public class JSDocGenerator extends WriterSupport {
     }
     this.write(defaultValue);
 
-    this.write(';');
+    // TODO not on last
+    this.write(',');
     this.writeNewLine();
   }
 
