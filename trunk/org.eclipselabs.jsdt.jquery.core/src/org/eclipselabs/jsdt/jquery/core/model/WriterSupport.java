@@ -57,7 +57,7 @@ class WriterSupport {
     }
   }
 
-  protected void visitAll(Collection<JQueryMember> members, Predicate predicate, MemberVisitor<Void> visistor) {
+  protected void visitAll(Iterable<JQueryMember> members, Predicate predicate, MemberVisitor<Void> visistor) {
     MemberVisitor<Void> filteredVisitor = new FilteredVisitor<Void>(predicate, visistor);
     for (JQueryMember member : members) {
       member.accept(filteredVisitor);

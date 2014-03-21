@@ -21,6 +21,8 @@ public interface JQueryMember {
   String JQUERY_EVENT = "jQueryEvent";
   
   String JQUERY_DEFERRED = "jQueryDeferred";
+  
+  String JQUERY_XMLHTTPREQUEST = "jQueryXMLHttpRequest";
 
   public String getName();
 

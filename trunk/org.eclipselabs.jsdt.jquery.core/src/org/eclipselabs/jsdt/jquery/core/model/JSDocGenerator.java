@@ -15,7 +15,9 @@ package org.eclipselabs.jsdt.jquery.core.model;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +38,8 @@ public class JSDocGenerator extends WriterSupport {
   private static final String JQUERY_EVENT_PROTOTYPE = JQueryMember.JQUERY_EVENT + ".prototype";
   
   private static final String JQUERY_DEFERRED_PROTOTYPE = JQueryMember.JQUERY_DEFERRED + ".prototype";
+  
+  private static final String JQUERY_XMLHTTPREQUEST_PROTOTYPE = JQueryMember.JQUERY_XMLHTTPREQUEST + ".prototype";
 
   private static final Map<String, String> DEFAULT_VALUES;
 
@@ -49,6 +53,7 @@ public class JSDocGenerator extends WriterSupport {
     DEFAULT_VALUES.put("Integer", "1");
     DEFAULT_VALUES.put("Element", "null");
     DEFAULT_VALUES.put("Anything", "{}");
+    DEFAULT_VALUES.put("Document", "new Document()");
   }
 
   private static final Version VERSION_WITH_DEFERRED = SimpleVersion.fromString("1.5");
@@ -59,13 +64,44 @@ public class JSDocGenerator extends WriterSupport {
 
   public void write(Collection<JQueryMember> members, boolean noConflict, Writer output, Version maximumVersion) throws IOException {
     try {
-      this.writeProtected(members, noConflict, output, maximumVersion);
+      this.writeProtected(new CompositeIterable<JQueryMember>(members, fakeJqXhr()), noConflict, output, maximumVersion);
     } finally {
       output.close();
     }
   }
+  
+  private Iterable<JQueryMember> fakeJqXhr() {
+    Collection<PropertySignature> since15 = Collections.singletonList(new PropertySignature("1.5", null, null));
+    Property readyState = new Property("jqXHR.readyState",
+        "The state of the request",
+        "The state of the request",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        since15, "Integer", null, null);
+    Property status = new Property("jqXHR.status",
+        "The status of the response to the request. This is the HTTP result code (for example, status is 200 for a successful request).",
+        "The status of the response to the request. This is the HTTP result code (for example, status is 200 for a successful request).",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        since15, "Integer", null, null);
+    Property statusText = new Property("jqXHR.statusText",
+        "The response string returned by the HTTP server. Unlike status, this includes the entire text of the response message (\"200 OK\", for example).",
+        "The response string returned by the HTTP server. Unlike status, this includes the entire text of the response message (\"200 OK\", for example).",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        since15, "String", null, null);
+    Property responseXML = new Property("jqXHR.responseXML",
+        "The response to the request as a DOM Document object, or null if the request was unsuccessful, has not yet been sent, or cannot be parsed as XML or HTML. The response is parsed as if it were a text/xml stream. When the responseType is set to \"document\" and the request has been made asynchronously, the response is parsed as a text/html stream.",
+        "The response to the request as a DOM Document object, or null if the request was unsuccessful, has not yet been sent, or cannot be parsed as XML or HTML. The response is parsed as if it were a text/xml stream. When the responseType is set to \"document\" and the request has been made asynchronously, the response is parsed as a text/html stream.",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        since15, "Document", null, null);
+    Function abort = new Function("jqXHR.abort",
+        "Aborts the request if it has already been sent.",
+        "Aborts the request if it has already been sent.",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.5", null, null, Collections.<FunctionArgument>emptyList())),
+        "void", null, null);
+    return Arrays.<JQueryMember>asList(readyState, status, statusText, responseXML, abort);
+  }
 
-  private void writeProtected(Collection<JQueryMember> members, boolean noConflict, Writer output, Version maximumVersion) {
+  private void writeProtected(Iterable<JQueryMember> members, boolean noConflict, Writer output, Version maximumVersion) {
     this.noConflict = noConflict;
     this.output = output;
     this.maximumVersion = maximumVersion;
@@ -86,6 +122,14 @@ public class JSDocGenerator extends WriterSupport {
       this.visitAll(members, Filters.DEFERRED, new JQueryDeferredWriter());
       this.closePrototype();
     }
+    
+    if (this.supportsDeferred()) {
+      this.writeJQueryXmlHttpRequestType();
+      this.openPrototype(JQUERY_XMLHTTPREQUEST_PROTOTYPE);
+      this.visitAll(members, Filters.XHR, new JQueryXhrWriter());
+      this.closePrototype();
+    }
+    
     Function constructor = this.findConstructor(members);
     this.writeConstructor(constructor);
     // waiting for the following bug to be fixed
@@ -107,7 +151,7 @@ public class JSDocGenerator extends WriterSupport {
     this.writeLine("};");
   }
 
-  private Function findConstructor(Collection<JQueryMember> members) {
+  private Function findConstructor(Iterable<JQueryMember> members) {
     MemberVisitor<Function> finder = new ConstructorFinder();
     for (JQueryMember member : members) {
       Function constructor = member.accept(finder);
@@ -165,6 +209,10 @@ public class JSDocGenerator extends WriterSupport {
   
   private void writeJQueryDeferredType() {
     this.writeType(JQueryMember.JQUERY_DEFERRED);
+  }
+  
+  private void writeJQueryXmlHttpRequestType() {
+    this.writeType(JQueryMember.JQUERY_XMLHTTPREQUEST);
   }
   
   private void writeType(String typeName) {
@@ -226,6 +274,22 @@ public class JSDocGenerator extends WriterSupport {
     }
     
   }
+  
+  final class JQueryXhrWriter implements MemberVisitor<Void> {
+    
+    @Override
+    public Void visitFuntion(Function function) {
+      JSDocGenerator.this.visitJQueryXhrFunction(function);
+      return null;
+    }
+    
+    @Override
+    public Void visitProperty(Property property) {
+      JSDocGenerator.this.visitJQueryXhrProperty(property);
+      return null;
+    }
+    
+  }
 
   final class JQueryInstanceSideWriter implements MemberVisitor<Void> {
 
@@ -278,6 +342,14 @@ public class JSDocGenerator extends WriterSupport {
   }
   
   void visitJQueryDeferredProperty(Property property) {
+    this.writeProperty(property);
+  }
+  
+  void visitJQueryXhrFunction(Function function) {
+    this.writeFunction(function);
+  }
+  
+  void visitJQueryXhrProperty(Property property) {
     this.writeProperty(property);
   }
 
@@ -451,7 +523,9 @@ public class JSDocGenerator extends WriterSupport {
     if ("jQuery".equals(type)) {
       return JQueryMember.JQUERY_OBJECT;
     } else if ("Deferred".equals(type)) {
-        return JQueryMember.JQUERY_DEFERRED;
+      return JQueryMember.JQUERY_DEFERRED;
+    } else if ("jqXHR".equals(type)) {
+      return JQueryMember.JQUERY_XMLHTTPREQUEST;
     } else {
       return this.fixMultipleTypes(type);
     }
