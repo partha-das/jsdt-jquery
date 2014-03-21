@@ -122,7 +122,54 @@ public class JSDocGenerator extends WriterSupport {
         Collections.<Example>emptyList(), Collections.<String>emptySet(),
         Collections.singletonList(new FunctionSignature("1.4", null, null, Collections.singletonList(new FunctionArgument("mimeType", Collections.singleton("String"), "the header name", false, null, Collections.<Option>emptyList())))),
         "String", null, null);
-    return Arrays.<JQueryMember>asList(readyState, status, statusText, responseXML, abort, getAllResponseHeaders, getResponseHeader, overrideMimeType, statusCode);
+    Function done = new Function("jqXHR.done",
+        "An alternative construct to the success callback option, the .done() method replaces the deprecated jqXHR.success() method. Refer to deferred.done() for implementation details.",
+        "An alternative construct to the success callback option, the .done() method replaces the deprecated jqXHR.success() method. Refer to deferred.done() for implementation details.",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.5", null, null, Collections.singletonList(new FunctionArgument("function( data, textStatus, jqXHR )", Collections.singleton("Function"), "the callback", false, null, Collections.<Option>emptyList())))),
+        "Deferred", null, null);
+    Function success = new Function("jqXHR.success",
+        "Refer to deferred.done() for implementation details.",
+        "Refer to deferred.done() for implementation details.",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.5", null, "1.8", Collections.singletonList(new FunctionArgument("function( data, textStatus, jqXHR )", Collections.singleton("Function"), "the callback", false, null, Collections.<Option>emptyList())))),
+        "Deferred", null, null);
+    Function fail = new Function("jqXHR.fail",
+        "An alternative construct to the error callback option, the .fail() method replaces the deprecated .error() method. Refer to deferred.fail() for implementation details. ",
+        "An alternative construct to the error callback option, the .fail() method replaces the deprecated .error() method. Refer to deferred.fail() for implementation details. ",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.5", null, null, Collections.singletonList(new FunctionArgument("function( jqXHR, textStatus, errorThrown )", Collections.singleton("Function"), "the callback", false, null, Collections.<Option>emptyList())))),
+        "Deferred", null, null);
+    Function error = new Function("jqXHR.error",
+        "Refer to deferred.fail() for implementation details. ",
+        "Refer to deferred.fail() for implementation details. ",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.5", null, "1.8", Collections.singletonList(new FunctionArgument("function( jqXHR, textStatus, errorThrown )", Collections.singleton("Function"), "the callback", false, null, Collections.<Option>emptyList())))),
+        "Deferred", null, null);
+    Function always = new Function("jqXHR.always",
+        "An alternative construct to the complete callback option, the .always() method replaces the deprecated .complete() method.",
+        "An alternative construct to the complete callback option, the .always() method replaces the deprecated .complete() method.",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.5", null, null, Collections.singletonList(new FunctionArgument("function( data|jqXHR, textStatus, jqXHR|errorThrown )", Collections.singleton("Function"), "the callback", false, null, Collections.<Option>emptyList())))),
+        "Deferred", null, null);
+    Function complete = new Function("jqXHR.complete",
+        "An alternative construct to the complete callback option, the .always() method replaces the deprecated .complete() method.",
+        "An alternative construct to the complete callback option, the .always() method replaces the deprecated .complete() method.",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.5", null, "1.8", Collections.singletonList(new FunctionArgument("function( data|jqXHR, textStatus, jqXHR|errorThrown )", Collections.singleton("Function"), "the callback", false, null, Collections.<Option>emptyList())))),
+        "Deferred", null, null);
+    Function then = new Function("jqXHR.then",
+        "Incorporates the functionality of the .done() and .fail() methods, allowing (as of jQuery 1.8) the underlying Promise to be manipulated. Refer to deferred.then() for implementation details. ",
+        "Incorporates the functionality of the .done() and .fail() methods, allowing (as of jQuery 1.8) the underlying Promise to be manipulated. Refer to deferred.then() for implementation details. ",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.8", null, null, Arrays.asList(
+            new FunctionArgument("function( data, textStatus, jqXHR )", Collections.singleton("Function"), "the callback", false, null, Collections.<Option>emptyList()),
+            new FunctionArgument("function( jqXHR, textStatus, errorThrown )", Collections.singleton("Function"), "the callback", false, null, Collections.<Option>emptyList())))),
+        "Deferred", null, null);
+    return Arrays.<JQueryMember>asList(readyState, status, statusText, responseXML, abort,
+        getAllResponseHeaders, getResponseHeader, overrideMimeType, statusCode,
+        done, fail, always, then,
+        success, error, complete);
   }
 
   private void writeProtected(Iterable<JQueryMember> members, boolean noConflict, Writer output, Version maximumVersion) {
