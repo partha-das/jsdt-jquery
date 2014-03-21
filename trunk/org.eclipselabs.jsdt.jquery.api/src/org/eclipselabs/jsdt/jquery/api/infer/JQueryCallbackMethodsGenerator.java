@@ -113,7 +113,7 @@ public class JQueryCallbackMethodsGenerator {
     callbacks.addCallbackMethod("unload", 1, 0);
     callbacks.addCallbackMethod("unload", 2, 1);
     callbacks.addCallbackMethod("unload", 1, 0);
-   return callbacks;
- }
+    return callbacks;
+  }
 
 }
