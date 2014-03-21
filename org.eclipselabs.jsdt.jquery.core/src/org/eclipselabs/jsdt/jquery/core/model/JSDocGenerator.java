@@ -110,7 +110,19 @@ public class JSDocGenerator extends WriterSupport {
         Collections.<Example>emptyList(), Collections.<String>emptySet(),
         Collections.singletonList(new FunctionSignature("1.5", null, null, Collections.singletonList(new FunctionArgument("header", Collections.singleton("String"), "the header name", false, null, Collections.<Option>emptyList())))),
         "String", null, null);
-    return Arrays.<JQueryMember>asList(readyState, status, statusText, responseXML, abort, getAllResponseHeaders, getResponseHeader);
+    Function statusCode = new Function("jqXHR.statusCode",
+        "statusCode",
+        "statusCode",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.5", null, null, Collections.<FunctionArgument>emptyList())),
+        "Object", null, null);
+    Function overrideMimeType = new Function("jqXHR.overrideMimeType",
+        "Override the mime type. Available in jQuery 1.4.x, as well, temporarily removed in jQuery 1.5 but added again in 1.5.1.",
+        "Override the mime type. Available in jQuery 1.4.x, as well, temporarily removed in jQuery 1.5 but added again in 1.5.1.",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.4", null, null, Collections.singletonList(new FunctionArgument("mimeType", Collections.singleton("String"), "the header name", false, null, Collections.<Option>emptyList())))),
+        "String", null, null);
+    return Arrays.<JQueryMember>asList(readyState, status, statusText, responseXML, abort, getAllResponseHeaders, getResponseHeader, overrideMimeType, statusCode);
   }
 
   private void writeProtected(Iterable<JQueryMember> members, boolean noConflict, Writer output, Version maximumVersion) {

@@ -1459,6 +1459,19 @@ getAllResponseHeaders: function() {},
  * @returns {String}
  */
 getResponseHeader: function(header) {},
+/**
+ * Override the mime type. Available in jQuery 1.4.x, as well, temporarily removed in jQuery 1.5 but added again in 1.5.1.
+ * @since 1.4
+ * @param {String} mimeType the header name
+ * @returns {String}
+ */
+overrideMimeType: function(mimeType) {},
+/**
+ * statusCode
+ * @since 1.5
+ * @returns {Object}
+ */
+statusCode: function() {},
 };
 /**
  * Accepts a string containing a CSS selector which is then used to match a set of elements.
