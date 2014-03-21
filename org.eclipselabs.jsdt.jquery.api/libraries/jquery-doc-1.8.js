@@ -1266,6 +1266,158 @@ which: 1,
  */
 metaKey: true,
 };
+var jQueryDeferred = { };
+jQueryDeferred.prototype = {
+/**
+ *  Add handlers to be called when the Deferred object is either resolved or rejected. 
+ * @since 1.6
+ * @param {Function} alwaysCallbacks 
+        A function, or array of functions, that is called when the Deferred is resolved or rejected.
+      
+ * @param {Function} [alwaysCallbacks] 
+        Optional additional functions, or arrays of functions, that are called when the Deferred is resolved or rejected.
+      
+ * @returns {Deferred}
+ */
+always: function(alwaysCallbacks, alwaysCallbacks) {},
+/**
+ *  Add handlers to be called when the Deferred object is resolved. 
+ * @since 1.5
+ * @param {Function} doneCallbacks 
+        A function, or array of functions, that are called when the Deferred is resolved.
+      
+ * @param {Function} [doneCallbacks] 
+        Optional additional functions, or arrays of functions, that are called when the Deferred is resolved.
+      
+ * @returns {Deferred}
+ */
+done: function(doneCallbacks, doneCallbacks) {},
+/**
+ *  Add handlers to be called when the Deferred object is rejected. 
+ * @since 1.5
+ * @param {Function} failCallbacks 
+        A function, or array of functions, that are called when the Deferred is rejected.
+      
+ * @param {Function} [failCallbacks] 
+        Optional additional functions, or arrays of functions, that are called when the Deferred is rejected.
+      
+ * @returns {Deferred}
+ */
+fail: function(failCallbacks, failCallbacks) {},
+/**
+ *  Call the progressCallbacks on a Deferred object with the given <code>args</code>. 
+ * @since 1.7
+ * @param {Object} args 
+        Optional arguments that are passed to the progressCallbacks.
+      
+ * @returns {Deferred}
+ */
+notify: function(args) {},
+/**
+ *  Call the progressCallbacks on a Deferred object with the given context and <code>args</code>. 
+ * @since 1.7
+ * @param {Object} context 
+        Context passed to the progressCallbacks as the <code>this</code> object.
+      
+ * @param {Object} [args] 
+        Optional arguments that are passed to the progressCallbacks.
+      
+ * @returns {Deferred}
+ */
+notifyWith: function(context, args) {},
+/**
+ *  Utility method to filter and/or chain Deferreds.  
+ * @since 1.6
+ * @deprecated 1.8
+ * @param {Function} [doneFilter] 
+        An optional function that is called when the Deferred is resolved.
+      
+ * @param {Function} [failFilter] 
+        An optional function that is called when the Deferred is rejected.
+      
+ * @returns {Promise}
+ */
+pipe: function(doneFilter, failFilter) {},
+/**
+ *  Add handlers to be called when the Deferred object generates progress notifications.
+ * @since 1.7
+ * @param {Array} progressCallbacks 
+        A function, or array of functions, to be called when the Deferred generates progress notifications.
+      
+ * @returns {Deferred}
+ */
+progress: function(progressCallbacks) {},
+/**
+ *  Return a Deferred's Promise object. 
+ * @since 1.5
+ * @param {Object} [target] Object onto which the promise methods have to be attached
+ * @returns {Promise}
+ */
+promise: function(target) {},
+/**
+ *  Reject a Deferred object and call any failCallbacks with the given <code>args</code>. 
+ * @since 1.5
+ * @param {Anything} [args] 
+        Optional arguments that are passed to the failCallbacks.
+      
+ * @returns {Deferred}
+ */
+reject: function(args) {},
+/**
+ *  Reject a Deferred object and call any failCallbacks with the given <code>context</code> and <code>args</code>. 
+ * @since 1.5
+ * @param {Object} context 
+        Context passed to the failCallbacks as the <code>this</code> object.
+      
+ * @param {Array} [args] 
+        An optional array of arguments that are passed to the failCallbacks.
+      
+ * @returns {Deferred}
+ */
+rejectWith: function(context, args) {},
+/**
+ *  Resolve a Deferred object and call any doneCallbacks with the given <code>args</code>. 
+ * @since 1.5
+ * @param {Anything} [args] 
+        Optional arguments that are passed to the doneCallbacks.
+      
+ * @returns {Deferred}
+ */
+resolve: function(args) {},
+/**
+ *  Resolve a Deferred object and call any doneCallbacks with the given <code>context</code> and <code>args</code>. 
+ * @since 1.5
+ * @param {Object} context 
+        Context passed to the doneCallbacks as the <code>this</code> object.
+      
+ * @param {Array} [args] 
+        An optional array of arguments that are passed to the doneCallbacks.
+      
+ * @returns {Deferred}
+ */
+resolveWith: function(context, args) {},
+/**
+ * Determine the current state of a Deferred object. 
+ * @since 1.7
+ * @returns {String}
+ */
+state: function() {},
+/**
+ * Add handlers to be called when the Deferred object is resolved, rejected, or still in progress. 
+ * @since 1.8
+ * @param {Function} doneFilter 
+        A function that is called when the Deferred is resolved.
+      
+ * @param {Function} [failFilter] 
+        An optional function that is called when the Deferred is rejected.
+      
+ * @param {Function} [progressFilter] 
+        An optional function that is called when progress notifications are sent to the Deferred.
+      
+ * @returns {Promise}
+ */
+then: function(doneFilter, failFilter, progressFilter) {},
+};
 /**
  * Accepts a string containing a CSS selector which is then used to match a set of elements.
  * @returns {jQueryObject}

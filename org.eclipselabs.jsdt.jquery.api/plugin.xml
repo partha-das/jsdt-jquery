@@ -111,13 +111,13 @@
    <extension
          point="org.eclipse.wst.jsdt.core.inferrenceSupport">
       <inferenceProvider
-            class="org.eclipselabs.jsdt.jquery.api.infer.NoConflictJQueryEventInferenceProvider">
+            class="org.eclipselabs.jsdt.jquery.api.infer.NoConflictJQueryInferenceProvider">
       </inferenceProvider>
    </extension>
    <extension
          point="org.eclipse.wst.jsdt.core.inferrenceSupport">
       <inferenceProvider
-            class="org.eclipselabs.jsdt.jquery.api.infer.ConflictJQueryEventInferenceProvider">
+            class="org.eclipselabs.jsdt.jquery.api.infer.ConflictJQueryInferenceProvider">
       </inferenceProvider>
    </extension>
 

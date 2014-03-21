@@ -35,7 +35,7 @@ public class JSDocGenerator extends WriterSupport {
 
   private static final String JQUERY_EVENT_PROTOTYPE = JQueryMember.JQUERY_EVENT + ".prototype";
   
-  private static final String JQUERY_DEFERRED_PROTOTYPE = JQueryMember.JQUERY_EVENT + ".prototype";
+  private static final String JQUERY_DEFERRED_PROTOTYPE = JQueryMember.JQUERY_DEFERRED + ".prototype";
 
   private static final Map<String, String> DEFAULT_VALUES;
 
@@ -70,16 +70,22 @@ public class JSDocGenerator extends WriterSupport {
     this.output = output;
     this.maximumVersion = maximumVersion;
 
-    this.writeJQueryObject();
+    this.writeJQueryObjectType();
     this.openPrototype(JQUERY_OBJECT_PROTOTYPE);
     this.visitAll(members, Filters.INSTANCE_SIDE, new JQueryInstanceSideWriter());
     this.closePrototype();
 
-    this.writeJQueryEvent();
+    this.writeJQueryEventType();
     this.openPrototype(JQUERY_EVENT_PROTOTYPE);
     this.visitAll(members, Filters.EVENT, new JQueryEventWriter());
     this.closePrototype();
-
+    
+    if (this.supportsDeferred()) {
+      this.writeJQueryDeferredType();
+      this.openPrototype(JQUERY_DEFERRED_PROTOTYPE);
+      this.visitAll(members, Filters.DEFERRED, new JQueryDeferredWriter());
+      this.closePrototype();
+    }
     Function constructor = this.findConstructor(members);
     this.writeConstructor(constructor);
     // waiting for the following bug to be fixed
@@ -149,24 +155,37 @@ public class JSDocGenerator extends WriterSupport {
     this.writeLine("function " + globalVariableName + "() {};");
   }
 
-  private void writeJQueryObject() {
-    this.writeLine("var " + JQueryMember.JQUERY_OBJECT + " = { };");
+  private void writeJQueryObjectType() {
+    this.writeType(JQueryMember.JQUERY_OBJECT);
   }
 
-  private void writeJQueryEvent() {
-    this.writeLine("var " + JQueryMember.JQUERY_EVENT + " = { };");
-//    this.writeLine("function " + JQueryMember.JQUERY_EVENT + "(){};");
-//    this.writeLine(JQueryMember.JQUERY_EVENT + " = { };");
+  private void writeJQueryEventType() {
+    this.writeType(JQueryMember.JQUERY_EVENT);
+  }
+  
+  private void writeJQueryDeferredType() {
+    this.writeType(JQueryMember.JQUERY_DEFERRED);
+  }
+  
+  private void writeType(String typeName) {
+    this.write("var ");
+    this.write(typeName);
+    this.write(" = { };");
+    this.writeNewLine();
   }
 
 
   private void writeDeferredConsturctor() {
-    if (this.maximumVersion.compareTo(VERSION_WITH_DEFERRED) >= 0) {
+    if (supportsDeferred()) {
       this.writeDeferredConsturctor("jQuery");
       if (!this.noConflict) {
         this.writeDeferredConsturctor("$");
       }
     }
+  }
+
+  private boolean supportsDeferred() {
+    return this.maximumVersion.compareTo(VERSION_WITH_DEFERRED) >= 0;
   }
 
   private void writeDeferredConsturctor(String globalVariableName) {
@@ -186,10 +205,26 @@ public class JSDocGenerator extends WriterSupport {
 
     @Override
     public Void visitProperty(Property property) {
-      JSDocGenerator.this.visitJQueryEventeProperty(property);
+      JSDocGenerator.this.visitJQueryEventProperty(property);
       return null;
     }
 
+  }
+  
+  final class JQueryDeferredWriter implements MemberVisitor<Void> {
+    
+    @Override
+    public Void visitFuntion(Function function) {
+      JSDocGenerator.this.visitJQueryDeferredFunction(function);
+      return null;
+    }
+    
+    @Override
+    public Void visitProperty(Property property) {
+      JSDocGenerator.this.visitJQueryDeferredProperty(property);
+      return null;
+    }
+    
   }
 
   final class JQueryInstanceSideWriter implements MemberVisitor<Void> {
@@ -234,7 +269,15 @@ public class JSDocGenerator extends WriterSupport {
     this.writeFunction(function);
   }
 
-  void visitJQueryEventeProperty(Property property) {
+  void visitJQueryEventProperty(Property property) {
+    this.writeProperty(property);
+  }
+  
+  void visitJQueryDeferredFunction(Function function) {
+    this.writeFunction(function);
+  }
+  
+  void visitJQueryDeferredProperty(Property property) {
     this.writeProperty(property);
   }
 
