@@ -1,3 +1,16 @@
+/*
+ * *****************************************************************************
+ * Copyright (c) 2014 Philippe Marschall and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Philippe Marschall
+ * *****************************************************************************
+ */
+
 package org.eclipselabs.jsdt.jquery.api.infer;
 
 import org.eclipse.wst.jsdt.core.ast.ASTVisitor;
@@ -5,9 +18,8 @@ import org.eclipse.wst.jsdt.core.ast.IASTNode;
 import org.eclipse.wst.jsdt.core.ast.IExpression;
 import org.eclipse.wst.jsdt.core.ast.IFunctionCall;
 import org.eclipse.wst.jsdt.core.ast.ISingleNameReference;
-import org.eclipse.wst.jsdt.internal.compiler.ast.SingleNameReference;
 
-public abstract class JQueryInferrerSupport extends ASTVisitor {
+abstract class JQueryInferrerSupport extends ASTVisitor {
 
   protected final boolean noConflict;
 

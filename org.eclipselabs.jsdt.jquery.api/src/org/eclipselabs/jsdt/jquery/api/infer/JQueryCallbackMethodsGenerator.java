@@ -17,8 +17,8 @@ import javax.annotation.Generated;
 @Generated("org.eclipselabs.jsdt.jquery.core.model.CallbackMethodGenerator")
 public class JQueryCallbackMethodsGenerator {
 
- public JQueryCallbackMethods createCallbackMethods() {
-   JQueryCallbackMethods callbacks = new JQueryCallbackMethods();
+  public JQueryCallbackMethods createCallbackMethods() {
+    JQueryCallbackMethods callbacks = new JQueryCallbackMethods();
     callbacks.addCallbackMethod("bind", 3, 2);
     callbacks.addCallbackMethod("bind", 2, 1);
     callbacks.addCallbackMethod("blur", 1, 0);
