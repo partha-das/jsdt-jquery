@@ -1446,6 +1446,19 @@ responseXML: new Document(),
  * @returns {void}
  */
 abort: function() {},
+/**
+ * Returns all the response headers as a string, or null if no response has been received. Note: For multipart requests, this returns the headers from the current part of the request, not from the original channel.
+ * @since 1.5
+ * @returns {String}
+ */
+getAllResponseHeaders: function() {},
+/**
+ * Returns the header field value from the response of which the field name matches header, unless the field name is Set-Cookie or Set-Cookie2.
+ * @since 1.5
+ * @param {String} header the header name
+ * @returns {String}
+ */
+getResponseHeader: function(header) {},
 };
 /**
  * Accepts a string containing a CSS selector which is then used to match a set of elements.

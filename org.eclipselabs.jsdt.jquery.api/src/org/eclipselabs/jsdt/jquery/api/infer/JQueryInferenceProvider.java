@@ -40,8 +40,11 @@ public abstract class JQueryInferenceProvider implements InferrenceProvider {
 
   private final JQueryCallbackMethods callbackMethods;
 
+  private final JQueryXhrMethods jqXhrMethods;
+
   public JQueryInferenceProvider() {
     this.callbackMethods = new JQueryCallbackMethodsGenerator().createCallbackMethods();
+    this.jqXhrMethods = new JQueryJqXhrMethodsGenerator().createJqXhrMethods();
   }
 
   /**
@@ -49,7 +52,7 @@ public abstract class JQueryInferenceProvider implements InferrenceProvider {
    */
   @Override
   public IInferEngine getInferEngine() {
-    return new JQueryInferEngine(this.callbackMethods, this.getNoConflict());
+    return new JQueryInferEngine(this.callbackMethods, this.jqXhrMethods, this.getNoConflict());
   }
 
   abstract boolean getNoConflict();

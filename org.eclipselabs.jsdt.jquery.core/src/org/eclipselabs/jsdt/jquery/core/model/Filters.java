@@ -12,6 +12,10 @@
  */
 package org.eclipselabs.jsdt.jquery.core.model;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipselabs.jsdt.jquery.core.api.JQueryMember;
 
 enum Filters implements Predicate {
@@ -58,6 +62,24 @@ enum Filters implements Predicate {
       return isJQueryStatic(property);
     }
 
+  },
+  
+  JQUERY_AJAX {
+    
+    private final Set<String> ajaxFunctions = new HashSet<String>(Arrays.asList("get", "getJSON", "getScript", "post"));
+    
+    @Override
+    public boolean isTrue(Function function) {
+      String functionName = function.getName();
+      return functionName.startsWith("ajax")
+          || ajaxFunctions.contains(functionName);
+    }
+    
+    @Override
+    public boolean isTrue(Property property) {
+      return false;
+    }
+    
   },
 
   INSTANCE_SIDE {

@@ -98,7 +98,19 @@ public class JSDocGenerator extends WriterSupport {
         Collections.<Example>emptyList(), Collections.<String>emptySet(),
         Collections.singletonList(new FunctionSignature("1.5", null, null, Collections.<FunctionArgument>emptyList())),
         "void", null, null);
-    return Arrays.<JQueryMember>asList(readyState, status, statusText, responseXML, abort);
+    Function getAllResponseHeaders = new Function("jqXHR.getAllResponseHeaders",
+        "Returns all the response headers as a string, or null if no response has been received. Note: For multipart requests, this returns the headers from the current part of the request, not from the original channel.",
+        "Returns all the response headers as a string, or null if no response has been received. Note: For multipart requests, this returns the headers from the current part of the request, not from the original channel.",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.5", null, null, Collections.<FunctionArgument>emptyList())),
+        "String", null, null);
+    Function getResponseHeader = new Function("jqXHR.getResponseHeader",
+        "Returns the header field value from the response of which the field name matches header, unless the field name is Set-Cookie or Set-Cookie2.",
+        "Returns the header field value from the response of which the field name matches header, unless the field name is Set-Cookie or Set-Cookie2.",
+        Collections.<Example>emptyList(), Collections.<String>emptySet(),
+        Collections.singletonList(new FunctionSignature("1.5", null, null, Collections.singletonList(new FunctionArgument("header", Collections.singleton("String"), "the header name", false, null, Collections.<Option>emptyList())))),
+        "String", null, null);
+    return Arrays.<JQueryMember>asList(readyState, status, statusText, responseXML, abort, getAllResponseHeaders, getResponseHeader);
   }
 
   private void writeProtected(Iterable<JQueryMember> members, boolean noConflict, Writer output, Version maximumVersion) {
