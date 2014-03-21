@@ -41,6 +41,7 @@ public class Generator {
 
     writeJsDoc(documentation);
     writeCallbackMethods(documentation);
+    writeJqXhrCallbackMethods(documentation);
 
     long end = System.currentTimeMillis();
     System.out.printf("finished generating documentation in %dms%n", end - start);
@@ -50,6 +51,14 @@ public class Generator {
     CallbackMethodGenerator generator = new CallbackMethodGenerator();
     File parent = new File(new File(new File(new File(new File(new File(new File(new File(new File(".."), "org.eclipselabs.jsdt.jquery.api"), "src"), "org"), "eclipselabs"), "jsdt"), "jquery"), "api"), "infer");
     OutputStream outputStream = new FileOutputStream(new File(parent, "JQueryCallbackMethodsGenerator.java"));
+    OutputStream buffered = new BufferedOutputStream(outputStream);
+    generator.write(documentation.getMembers(), new OutputStreamWriter(buffered, "US-ASCII"));
+  }
+  
+  static void writeJqXhrCallbackMethods(JQueryDocumentation documentation) throws IOException {
+    XhrGenerator generator = new XhrGenerator();
+    File parent = new File(new File(new File(new File(new File(new File(new File(new File(new File(".."), "org.eclipselabs.jsdt.jquery.api"), "src"), "org"), "eclipselabs"), "jsdt"), "jquery"), "api"), "infer");
+    OutputStream outputStream = new FileOutputStream(new File(parent, "JQueryJqXhrMethodsGenerator.java"));
     OutputStream buffered = new BufferedOutputStream(outputStream);
     generator.write(documentation.getMembers(), new OutputStreamWriter(buffered, "US-ASCII"));
   }

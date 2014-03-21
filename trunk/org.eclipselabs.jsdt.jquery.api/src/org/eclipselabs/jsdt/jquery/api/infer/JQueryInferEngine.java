@@ -23,11 +23,13 @@ public class JQueryInferEngine implements IInferEngine {
 
   private final JQueryCallbackMethods callbackMethods;
   private final boolean noConflict;
+  private final JQueryXhrMethods jqXhrMethods;
   private CompilationUnitDeclaration compilationUnit;
   private InferOptions options;
 
-  public JQueryInferEngine(JQueryCallbackMethods callbackMethods, boolean noConflict) {
+  public JQueryInferEngine(JQueryCallbackMethods callbackMethods, JQueryXhrMethods jqXhrMethods, boolean noConflict) {
     this.callbackMethods = callbackMethods;
+    this.jqXhrMethods = jqXhrMethods;
     this.noConflict = noConflict;
   }
 
@@ -38,8 +40,10 @@ public class JQueryInferEngine implements IInferEngine {
   public void doInfer() {
     ASTVisitor eventInferer = new JQueryEventInferer(this.callbackMethods, this.noConflict);
     this.compilationUnit.traverse(eventInferer);
-    ASTVisitor deferred = new QueryDeferredInferrer(this.noConflict);
-    this.compilationUnit.traverse(deferred);
+    ASTVisitor deferredInferer = new QueryDeferredInferrer(this.noConflict);
+    this.compilationUnit.traverse(deferredInferer);
+    ASTVisitor xhrInferer = new JQueryXhrInferer(this.jqXhrMethods, this.noConflict);
+    this.compilationUnit.traverse(xhrInferer);
 
   }
 
