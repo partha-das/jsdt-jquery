@@ -1447,6 +1447,59 @@ overrideMimeType: function(mimeType) {},
  * @returns {Object}
  */
 statusCode: function() {},
+/**
+ * An alternative construct to the success callback option, the .done() method replaces the deprecated jqXHR.success() method. Refer to deferred.done() for implementation details.
+ * @since 1.5
+ * @param {Function} func the callback
+ * @returns {jQueryDeferred}
+ */
+done: function(func) {},
+/**
+ * An alternative construct to the error callback option, the .fail() method replaces the deprecated .error() method. Refer to deferred.fail() for implementation details. 
+ * @since 1.5
+ * @param {Function} func the callback
+ * @returns {jQueryDeferred}
+ */
+fail: function(func) {},
+/**
+ * An alternative construct to the complete callback option, the .always() method replaces the deprecated .complete() method.
+ * @since 1.5
+ * @param {Function} func the callback
+ * @returns {jQueryDeferred}
+ */
+always: function(func) {},
+/**
+ * Incorporates the functionality of the .done() and .fail() methods, allowing (as of jQuery 1.8) the underlying Promise to be manipulated. Refer to deferred.then() for implementation details. 
+ * @since 1.8
+ * @param {Function} func the callback
+ * @param {Function} func the callback
+ * @returns {jQueryDeferred}
+ */
+then: function(func, func) {},
+/**
+ * Refer to deferred.done() for implementation details.
+ * @since 1.5
+ * @deprecated 1.8
+ * @param {Function} func the callback
+ * @returns {jQueryDeferred}
+ */
+success: function(func) {},
+/**
+ * Refer to deferred.fail() for implementation details. 
+ * @since 1.5
+ * @deprecated 1.8
+ * @param {Function} func the callback
+ * @returns {jQueryDeferred}
+ */
+error: function(func) {},
+/**
+ * An alternative construct to the complete callback option, the .always() method replaces the deprecated .complete() method.
+ * @since 1.5
+ * @deprecated 1.8
+ * @param {Function} func the callback
+ * @returns {jQueryDeferred}
+ */
+complete: function(func) {},
 };
 /**
  * Accepts a string containing a CSS selector which is then used to match a set of elements.

@@ -70,7 +70,8 @@ public class XhrGenerator extends WriterSupport {
 
   private boolean isJqXhrCallback(FunctionArgument argument) {
     String argumentName = argument.getName();
-    return (argumentName.startsWith("handler(") || argumentName.startsWith("success"))
+    return argument.getTypes().contains("Function")
+    	&& (argumentName.startsWith("handler(") || argumentName.startsWith("success"))
         && argumentName.contains(JQ_XHR_ARGUMENT_NAME);
   }
   
