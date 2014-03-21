@@ -34,6 +34,8 @@ public class JSDocGenerator extends WriterSupport {
   private static final String JQUERY_OBJECT_PROTOTYPE = JQueryMember.JQUERY_OBJECT + ".prototype";
 
   private static final String JQUERY_EVENT_PROTOTYPE = JQueryMember.JQUERY_EVENT + ".prototype";
+  
+  private static final String JQUERY_DEFERRED_PROTOTYPE = JQueryMember.JQUERY_EVENT + ".prototype";
 
   private static final Map<String, String> DEFAULT_VALUES;
 
@@ -74,7 +76,6 @@ public class JSDocGenerator extends WriterSupport {
     this.closePrototype();
 
     this.writeJQueryEvent();
-    
     this.openPrototype(JQUERY_EVENT_PROTOTYPE);
     this.visitAll(members, Filters.EVENT, new JQueryEventWriter());
     this.closePrototype();
@@ -153,8 +154,9 @@ public class JSDocGenerator extends WriterSupport {
   }
 
   private void writeJQueryEvent() {
-    this.writeLine("function " + JQueryMember.JQUERY_EVENT + "(){};");
-    this.writeLine(JQueryMember.JQUERY_EVENT + " = { };");
+    this.writeLine("var " + JQueryMember.JQUERY_EVENT + " = { };");
+//    this.writeLine("function " + JQueryMember.JQUERY_EVENT + "(){};");
+//    this.writeLine(JQueryMember.JQUERY_EVENT + " = { };");
   }
 
 

@@ -740,8 +740,7 @@ width: function(value) {},
  */
 wrap: function(wrappingElement) {},
 };
-function jQueryEvent(){};
-jQueryEvent = { };
+var jQueryEvent = { };
 jQueryEvent.prototype = {
 /**
  *  The current DOM element within the event bubbling phase.  

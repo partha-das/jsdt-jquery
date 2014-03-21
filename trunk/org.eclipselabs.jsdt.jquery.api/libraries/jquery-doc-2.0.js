@@ -1139,8 +1139,7 @@ addBack: function(selector) {},
  */
 finish: function(queue) {},
 };
-function jQueryEvent(){};
-jQueryEvent = { };
+var jQueryEvent = { };
 jQueryEvent.prototype = {
 /**
  *  The current DOM element within the event bubbling phase.  

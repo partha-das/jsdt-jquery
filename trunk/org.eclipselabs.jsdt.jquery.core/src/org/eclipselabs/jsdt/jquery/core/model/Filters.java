@@ -86,6 +86,20 @@ enum Filters implements Predicate {
       return isJQueryEvent(property);
     }
 
+  },
+  
+  DEFERRED {
+    
+    @Override
+    public boolean isTrue(Function function) {
+      return isJQueryDeferred(function);
+    }
+    
+    @Override
+    public boolean isTrue(Property property) {
+      return isJQueryDeferred(property);
+    }
+    
   };
 
 
@@ -111,6 +125,14 @@ enum Filters implements Predicate {
 
   static boolean isJQueryEvent(String owner) {
     return "event".equals(owner);
+  }
+  
+  static boolean isJQueryDeferred(DocumentedMember member) {
+    return isJQueryDeferred(member.getOwner());
+  }
+  
+  static boolean isJQueryDeferred(String owner) {
+    return "deferred".equals(owner);
   }
 
 
