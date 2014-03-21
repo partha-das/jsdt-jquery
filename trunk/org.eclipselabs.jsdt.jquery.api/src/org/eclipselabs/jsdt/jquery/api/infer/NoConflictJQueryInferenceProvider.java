@@ -12,8 +12,7 @@
  */
 package org.eclipselabs.jsdt.jquery.api.infer;
 
-public class NoConflictJQueryEventInferenceProvider extends
-JQueryEventInferenceProvider {
+public class NoConflictJQueryInferenceProvider extends JQueryInferenceProvider {
 
   /**
    * {@inheritDoc}

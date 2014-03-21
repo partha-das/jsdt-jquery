@@ -34,13 +34,13 @@ import org.eclipse.wst.jsdt.core.infer.ResolutionConfiguration;
 import org.eclipselabs.jsdt.jquery.api.JQueryApiPlugin;
 import org.eclipselabs.jsdt.jquery.api.JQueryContainer;
 
-public abstract class JQueryEventInferenceProvider implements InferrenceProvider {
+public abstract class JQueryInferenceProvider implements InferrenceProvider {
 
-  private static final String ID = JQueryEventInferenceProvider.class.getName();
+  private static final String ID = JQueryInferenceProvider.class.getName();
 
   private final JQueryCallbackMethods callbackMethods;
 
-  public JQueryEventInferenceProvider() {
+  public JQueryInferenceProvider() {
     this.callbackMethods = new JQueryCallbackMethodsGenerator().createCallbackMethods();
   }
 
@@ -49,7 +49,7 @@ public abstract class JQueryEventInferenceProvider implements InferrenceProvider
    */
   @Override
   public IInferEngine getInferEngine() {
-    return new JQueryEventInferEngine(this.callbackMethods, this.getNoConflict());
+    return new JQueryInferEngine(this.callbackMethods, this.getNoConflict());
   }
 
   abstract boolean getNoConflict();
