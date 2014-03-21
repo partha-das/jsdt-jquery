@@ -19,6 +19,8 @@ public interface JQueryMember {
   String JQUERY_OBJECT = "jQueryObject";
 
   String JQUERY_EVENT = "jQueryEvent";
+  
+  String JQUERY_DEFERRED = "jQueryDeferred";
 
   public String getName();
 
