@@ -1356,6 +1356,35 @@ resolveWith: function(context, args) {},
  */
 then: function(doneCallbacks, failCallbacks) {},
 };
+var jQueryXMLHttpRequest = { };
+jQueryXMLHttpRequest.prototype = {
+/**
+ * The state of the request
+ * @type {Integer}
+ */
+readyState: 1,
+/**
+ * The status of the response to the request. This is the HTTP result code (for example, status is 200 for a successful request).
+ * @type {Integer}
+ */
+status: 1,
+/**
+ * The response string returned by the HTTP server. Unlike status, this includes the entire text of the response message ("200 OK", for example).
+ * @type {String}
+ */
+statusText: "",
+/**
+ * The response to the request as a DOM Document object, or null if the request was unsuccessful, has not yet been sent, or cannot be parsed as XML or HTML. The response is parsed as if it were a text/xml stream. When the responseType is set to "document" and the request has been made asynchronously, the response is parsed as a text/html stream.
+ * @type {Document}
+ */
+responseXML: new Document(),
+/**
+ * Aborts the request if it has already been sent.
+ * @since 1.5
+ * @returns {void}
+ */
+abort: function() {},
+};
 /**
  * Accepts a string containing a CSS selector which is then used to match a set of elements.
  * @returns {jQueryObject}

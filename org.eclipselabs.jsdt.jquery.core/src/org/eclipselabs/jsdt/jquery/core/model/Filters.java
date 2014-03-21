@@ -88,6 +88,20 @@ enum Filters implements Predicate {
 
   },
   
+  XHR {
+    
+    @Override
+    public boolean isTrue(Function function) {
+      return isJQueryXhr(function);
+    }
+    
+    @Override
+    public boolean isTrue(Property property) {
+      return isJQueryXhr(property);
+    }
+    
+  },
+  
   DEFERRED {
     
     @Override
@@ -133,6 +147,14 @@ enum Filters implements Predicate {
   
   static boolean isJQueryDeferred(String owner) {
     return "deferred".equals(owner);
+  }
+  
+  static boolean isJQueryXhr(DocumentedMember member) {
+    return isJQueryXhr(member.getOwner());
+  }
+  
+  static boolean isJQueryXhr(String owner) {
+    return "jqXHR".equals(owner);
   }
 
 

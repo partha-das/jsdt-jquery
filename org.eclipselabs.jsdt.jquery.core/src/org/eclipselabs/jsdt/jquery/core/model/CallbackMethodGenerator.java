@@ -32,7 +32,7 @@ public class CallbackMethodGenerator extends WriterSupport {
     }
   }
 
-  private void writeProtected(Collection<JQueryMember> members, Writer output) {
+  private void writeProtected(Iterable<JQueryMember> members, Writer output) {
     this.output = output;
 
     this.writeHeader();
