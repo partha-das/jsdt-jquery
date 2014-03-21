@@ -450,6 +450,8 @@ public class JSDocGenerator extends WriterSupport {
   private String fixReturnTypes(String type) {
     if ("jQuery".equals(type)) {
       return JQueryMember.JQUERY_OBJECT;
+    } else if ("Deferred".equals(type)) {
+        return JQueryMember.JQUERY_DEFERRED;
     } else {
       return this.fixMultipleTypes(type);
     }
