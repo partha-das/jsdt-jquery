@@ -63,5 +63,10 @@ public class Function extends DocumentedMember implements JQueryMember {
     }
     return signaturesInVersion;
   }
+  
+  @Override
+  public String toString() {
+    return this.getName() + "()";
+  }
 
 }

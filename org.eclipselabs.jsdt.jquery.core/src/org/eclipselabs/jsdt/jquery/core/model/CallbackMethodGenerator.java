@@ -73,20 +73,6 @@ public class CallbackMethodGenerator extends WriterSupport {
         && "handler(eventObject)".equals(argument.getName());
   }
 
-  static final class CallbackArgument {
-    private final String selector;
-    private final int argumentAcount;
-    private final int eventIndex;
-
-    CallbackArgument(String selector, int argumentAcount, int eventIndex) {
-      this.selector = selector;
-      this.argumentAcount = argumentAcount;
-      this.eventIndex = eventIndex;
-    }
-
-
-  }
-
   final class CallbackWirter implements MemberVisitor<Void> {
 
     /**
@@ -130,14 +116,14 @@ public class CallbackMethodGenerator extends WriterSupport {
     this.writeLine("@Generated(\"" + this.getClass().getName() + "\")");
     this.writeLine("public class JQueryCallbackMethodsGenerator {");
     this.writeNewLine();
-    this.writeLine(" public JQueryCallbackMethods createCallbackMethods() {");
-    this.writeLine("   JQueryCallbackMethods callbacks = new JQueryCallbackMethods();");
+    this.writeLine("  public JQueryCallbackMethods createCallbackMethods() {");
+    this.writeLine("    JQueryCallbackMethods callbacks = new JQueryCallbackMethods();");
   }
 
 
   private void writeTrailer() {
-    this.writeLine("   return callbacks;");
-    this.writeLine(" }");
+    this.writeLine("    return callbacks;");
+    this.writeLine("  }");
     this.writeNewLine();
     this.writeLine("}");
   }
