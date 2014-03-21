@@ -1252,7 +1252,7 @@ jQueryDeferred.prototype = {
  * @param {Function} [alwaysCallbacks] 
         Optional additional functions, or arrays of functions, that are called when the Deferred is resolved or rejected.
       
- * @returns {Deferred}
+ * @returns {jQueryDeferred}
  */
 always: function(alwaysCallbacks, alwaysCallbacks) {},
 /**
@@ -1264,7 +1264,7 @@ always: function(alwaysCallbacks, alwaysCallbacks) {},
  * @param {Function} [doneCallbacks] 
         Optional additional functions, or arrays of functions, that are called when the Deferred is resolved.
       
- * @returns {Deferred}
+ * @returns {jQueryDeferred}
  */
 done: function(doneCallbacks, doneCallbacks) {},
 /**
@@ -1276,7 +1276,7 @@ done: function(doneCallbacks, doneCallbacks) {},
  * @param {Function} [failCallbacks] 
         Optional additional functions, or arrays of functions, that are called when the Deferred is rejected.
       
- * @returns {Deferred}
+ * @returns {jQueryDeferred}
  */
 fail: function(failCallbacks, failCallbacks) {},
 /**
@@ -1285,7 +1285,7 @@ fail: function(failCallbacks, failCallbacks) {},
  * @param {Object} args 
         Optional arguments that are passed to the progressCallbacks.
       
- * @returns {Deferred}
+ * @returns {jQueryDeferred}
  */
 notify: function(args) {},
 /**
@@ -1297,7 +1297,7 @@ notify: function(args) {},
  * @param {Object} [args] 
         Optional arguments that are passed to the progressCallbacks.
       
- * @returns {Deferred}
+ * @returns {jQueryDeferred}
  */
 notifyWith: function(context, args) {},
 /**
@@ -1319,7 +1319,7 @@ pipe: function(doneFilter, failFilter) {},
  * @param {Array} progressCallbacks 
         A function, or array of functions, to be called when the Deferred generates progress notifications.
       
- * @returns {Deferred}
+ * @returns {jQueryDeferred}
  */
 progress: function(progressCallbacks) {},
 /**
@@ -1335,7 +1335,7 @@ promise: function(target) {},
  * @param {Anything} [args] 
         Optional arguments that are passed to the failCallbacks.
       
- * @returns {Deferred}
+ * @returns {jQueryDeferred}
  */
 reject: function(args) {},
 /**
@@ -1347,7 +1347,7 @@ reject: function(args) {},
  * @param {Array} [args] 
         An optional array of arguments that are passed to the failCallbacks.
       
- * @returns {Deferred}
+ * @returns {jQueryDeferred}
  */
 rejectWith: function(context, args) {},
 /**
@@ -1356,7 +1356,7 @@ rejectWith: function(context, args) {},
  * @param {Anything} [args] 
         Optional arguments that are passed to the doneCallbacks.
       
- * @returns {Deferred}
+ * @returns {jQueryDeferred}
  */
 resolve: function(args) {},
 /**
@@ -1368,7 +1368,7 @@ resolve: function(args) {},
  * @param {Array} [args] 
         An optional array of arguments that are passed to the doneCallbacks.
       
- * @returns {Deferred}
+ * @returns {jQueryDeferred}
  */
 resolveWith: function(context, args) {},
 /**
