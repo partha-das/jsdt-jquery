@@ -15,6 +15,8 @@ package org.eclipselabs.jsdt.jquery.core.api;
 
 
 public interface JQueryMember {
+  
+  String JQUERY = "jQuery";
 
   String JQUERY_OBJECT = "jQueryObject";
 
