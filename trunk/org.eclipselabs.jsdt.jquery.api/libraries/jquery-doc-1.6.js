@@ -23,48 +23,6 @@ addClass: function(className) {},
  */
 after: function(content, content) {},
 /**
- * Register a handler to be called when Ajax requests complete. This is an <a>AjaxEvent</a>.
- * @since 1.0
- * @param {Function} handler The function to be invoked.
- * @returns {jQueryObject}
- */
-ajaxComplete: function(handler) {},
-/**
- * Register a handler to be called when Ajax requests complete with an error. This is an <a>Ajax Event</a>.
- * @since 1.0
- * @param {Function} handler The function to be invoked.
- * @returns {jQueryObject}
- */
-ajaxError: function(handler) {},
-/**
- * Attach a function to be executed before an Ajax request is sent. This is an <a>Ajax Event</a>.
- * @since 1.0
- * @param {Function} handler The function to be invoked.
- * @returns {jQueryObject}
- */
-ajaxSend: function(handler) {},
-/**
- * Register a handler to be called when the first Ajax request begins. This is an <a>Ajax Event</a>.
- * @since 1.0
- * @param {Function} handler The function to be invoked.
- * @returns {jQueryObject}
- */
-ajaxStart: function(handler) {},
-/**
- * Register a handler to be called when all Ajax requests have completed. This is an <a>Ajax Event</a>.
- * @since 1.0
- * @param {Function} handler The function to be invoked.
- * @returns {jQueryObject}
- */
-ajaxStop: function(handler) {},
-/**
- * Attach a function to be executed whenever an Ajax request completes successfully. This is an <a>Ajax Event</a>.
- * @since 1.0
- * @param {Function} handler The function to be invoked.
- * @returns {jQueryObject}
- */
-ajaxSuccess: function(handler) {},
-/**
  * Add the previous set of elements on the stack to the current set.
  * @since 1.2
  * @returns {jQueryObject}

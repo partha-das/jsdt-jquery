@@ -40,8 +40,8 @@ class JQueryXhrInferer extends JQueryInferrerSupport {
   public boolean visit(IFunctionCall functionCall) {
 
     IExpression receiver = functionCall.getReceiver();
-    String selector = new String(functionCall.getSelector());
-    if (this.isJQueryStatic(receiver)) {
+    if (receiver != null && this.isJQueryStatic(receiver)) {
+      String selector = new String(functionCall.getSelector());
       if (this.isXhrSelector(selector)) {
         this.inferXhrFunctionCall(functionCall, selector);
       }

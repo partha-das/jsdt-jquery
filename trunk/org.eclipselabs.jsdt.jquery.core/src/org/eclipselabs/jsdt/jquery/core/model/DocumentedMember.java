@@ -51,6 +51,10 @@ abstract class DocumentedMember extends DocumentationEntry implements JQueryMemb
     int dotIndex = s.lastIndexOf('.');
     if (dotIndex != -1) {
       return s.substring(0, dotIndex);
+    } else if (s.startsWith("ajax")) {
+      // .ajax* functions seem to be documented wrongly
+      // they are "ajaxError" but should be "jQuery.ajax"
+      return JQUERY;
     } else {
       return JQUERY_OBJECT;
     }
