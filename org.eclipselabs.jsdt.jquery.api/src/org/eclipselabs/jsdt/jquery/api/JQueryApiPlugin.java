@@ -37,7 +37,7 @@ public final class JQueryApiPlugin extends Plugin {
   public static final Version MAX_VERSION;
 
   static {
-    List<Version> versions = new ArrayList<Version>(MAX_MINOR_1 + 1 + MAX_MINOR_2 + 1);
+    List<Version> versions = new ArrayList<Version>(MAX_MINOR_1 + 1 + MAX_MINOR_2 + 1 + MAX_MINOR_3 + 1);
     for (int i = MAX_MINOR_3; i >= 0; --i) {
       versions.add(new SimpleVersion(3, i));
     }
