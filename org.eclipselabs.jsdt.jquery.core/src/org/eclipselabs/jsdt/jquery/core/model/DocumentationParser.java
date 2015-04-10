@@ -412,6 +412,7 @@ public class DocumentationParser {
     String description = null;
     // TODO optimize
     Collection<Option> options = new ArrayList<Option>();
+    List<FunctionArgument> arguments = new ArrayList<FunctionArgument>();
     while (reader.hasNext()) {
       int event = reader.next();
       if (event == START_ELEMENT) {
@@ -423,8 +424,7 @@ public class DocumentationParser {
         } else if ("property".equals(localName)) {
             options.add(this.parseProperty(reader));
         } else if ("argument".equals(localName)) {
-          // TODO function argument
-          this.parseArgument(reader);
+          arguments.add(this.parseArgument(reader));
         } else if ("return".equals(localName)) {
           returnType = this.parseStringContent("return", reader);
         } else {
@@ -435,7 +435,7 @@ public class DocumentationParser {
       } else if (event == END_ELEMENT) {
         String localName = reader.getLocalName();
         if ("argument".equals(localName)) {
-          return new FunctionArgument(name, types, description, optional, defaultValue, options);
+          return new FunctionArgument(name, types, description, optional, defaultValue, options, arguments, returnType);
         } else {
           String message = "unexpected start of element \"" + localName +  "\" "
               + " expected: \"argument\"";

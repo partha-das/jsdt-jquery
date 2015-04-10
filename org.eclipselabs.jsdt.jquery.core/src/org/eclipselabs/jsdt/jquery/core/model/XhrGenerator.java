@@ -71,21 +71,16 @@ public class XhrGenerator extends WriterSupport {
   private boolean isJqXhrCallback(FunctionArgument argument) {
     String argumentName = argument.getName();
     return argument.getTypes().contains("Function")
-    	&& (argumentName.startsWith("handler(") || argumentName.startsWith("success") || argumentName.startsWith("function("))
-        && argumentName.contains(JQ_XHR_ARGUMENT_NAME);
+        && ("handler".equals(argumentName) || "success".equals(argumentName))
+        && argument.getArgumentIndex(JQ_XHR_ARGUMENT_NAME) != -1;
   }
   
   private int extractJqXhrCallbackIndex(FunctionArgument argument) {
-    String argumentName = argument.getName(); // "handler(options, originalOptions, jqXHR)"
-    String argumentList = argumentName.substring(argumentName.indexOf('(') + 1, argumentName.lastIndexOf(')')); // "options, originalOptions, jqXHR"
-    String[] arguments = argumentList.split(",");
-    for (int i = 0; i < arguments.length; i++) {
-      String candidate = arguments[i];
-      if (candidate.trim().equals(JQ_XHR_ARGUMENT_NAME)) {
-        return i;
-      }
+    int index = argument.getArgumentIndex(JQ_XHR_ARGUMENT_NAME);
+    if (index == -1) {
+      throw new IllegalArgumentException("jqXHR not found");
     }
-    throw new IllegalArgumentException("jqXHR not found");
+    return index;
   }
   
   private void writeHeader() {

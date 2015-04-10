@@ -69,8 +69,14 @@ public class CallbackMethodGenerator extends WriterSupport {
   }
 
   private boolean isEventCallback(FunctionArgument argument) {
-    return argument.getTypes().contains("Function")
-        && "handler(eventObject)".equals(argument.getName());
+    boolean isFunctionType = argument.getTypes().contains("Function");
+    if (!isFunctionType) {
+      return false;
+    }
+    
+    String argumentName = argument.getName();
+    return "handler".equals(argumentName)
+        && argument.getArgumentIndex("eventObject") != 1;
   }
 
   final class CallbackWirter implements MemberVisitor<Void> {
