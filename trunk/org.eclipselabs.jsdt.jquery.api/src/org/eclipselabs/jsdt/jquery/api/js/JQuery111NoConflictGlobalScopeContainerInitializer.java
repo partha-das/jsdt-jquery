@@ -6,7 +6,7 @@ public class JQuery111NoConflictGlobalScopeContainerInitializer extends
 JQueryGlobalScopeContainerInitializer {
 
   public JQuery111NoConflictGlobalScopeContainerInitializer() {
-    super(SimpleVersion.fromString("1.10"), true);
+    super(SimpleVersion.fromString("1.11"), true);
   }
 
 }
