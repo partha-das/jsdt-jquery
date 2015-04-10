@@ -58,6 +58,7 @@ public class JQueryCallbackMethodsGenerator {
     callbacks.addCallbackMethod("keyup", 1, 0);
     callbacks.addCallbackMethod("live", 2, 1);
     callbacks.addCallbackMethod("live", 3, 2);
+    callbacks.addCallbackMethod("live", 2, 1);
     callbacks.addCallbackMethod("load", 1, 0);
     callbacks.addCallbackMethod("load", 2, 1);
     callbacks.addCallbackMethod("load", 1, 0);
@@ -91,6 +92,7 @@ public class JQueryCallbackMethodsGenerator {
     callbacks.addCallbackMethod("one", 4, 3);
     callbacks.addCallbackMethod("one", 3, 2);
     callbacks.addCallbackMethod("one", 2, 1);
+    callbacks.addCallbackMethod("ready", 1, 0);
     callbacks.addCallbackMethod("resize", 1, 0);
     callbacks.addCallbackMethod("resize", 2, 1);
     callbacks.addCallbackMethod("resize", 1, 0);

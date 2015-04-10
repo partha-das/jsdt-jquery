@@ -19,8 +19,10 @@ public class JQueryJqXhrMethodsGenerator {
 
   public JQueryXhrMethods createJqXhrMethods() {
     JQueryXhrMethods methods = new JQueryXhrMethods();
+    methods.addCallbackMethod("ajaxComplete", 1, 0, 1);
     methods.addCallbackMethod("ajaxError", 1, 0, 1);
     methods.addCallbackMethod("ajaxSend", 1, 0, 1);
+    methods.addCallbackMethod("ajaxSuccess", 1, 0, 1);
     methods.addCallbackMethod("ajaxPrefilter", 2, 1, 2);
     methods.addCallbackMethod("ajaxPrefilter", 1, 0, 2);
     methods.addCallbackMethod("ajaxTransport", 2, 1, 2);
