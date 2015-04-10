@@ -56,6 +56,9 @@ class QueryDeferredInferrer extends JQueryInferrerSupport {
   }
   
   private boolean isDeferredConstructorCall(IExpression expression) {
+    if (expression == null) {
+      return false;
+    }
     if (expression.getASTType() == IASTNode.FUNCTION_CALL) {
       IFunctionCall functionCall = (IFunctionCall) expression;
       char[] selector = functionCall.getSelector();
@@ -66,6 +69,9 @@ class QueryDeferredInferrer extends JQueryInferrerSupport {
 
   static boolean isDeferred(char[] selector) {
     // Deferred
+    if (selector == null) {
+      return false;
+    }
     return selector.length == 8
         && selector[0] == 'D'
         && selector[1] == 'e'
