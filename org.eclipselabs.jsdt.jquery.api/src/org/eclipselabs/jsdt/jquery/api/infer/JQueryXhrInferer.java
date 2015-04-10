@@ -41,24 +41,24 @@ class JQueryXhrInferer extends JQueryInferrerSupport {
 
     IExpression receiver = functionCall.getReceiver();
     if (receiver != null && this.isJQueryStatic(receiver)) {
-      String selector = new String(functionCall.getSelector());
-      if (this.isXhrSelector(selector)) {
-        this.inferXhrFunctionCall(functionCall, selector);
-      }
+      checkForXhr(functionCall);
     }
     return super.visit(functionCall);
   }
 
-  private void inferXhrFunctionCall(IFunctionCall functionCall, String selector) {
+  private void checkForXhr(IFunctionCall functionCall) {
+    String selector = new String(functionCall.getSelector());
     IExpression[] functionCallArguments = functionCall.getArguments();
     if (functionCallArguments != null) {
       int argumentCount = functionCallArguments.length;
       XhrLocator locator = this.getXhrLocator(selector, argumentCount);
-      int callbackFunctionIndex = locator.callbackFunctionIndex;
-      if (callbackFunctionIndex < argumentCount) {
-        IExpression expression = functionCallArguments[callbackFunctionIndex];
-        if (expression.getASTType() == IASTNode.FUNCTION_EXPRESSION) {
-          this.setInferredTypeXhr(expression, locator);
+      if (locator != null) {
+        int callbackFunctionIndex = locator.callbackFunctionIndex;
+        if (callbackFunctionIndex < argumentCount) {
+          IExpression expression = functionCallArguments[callbackFunctionIndex];
+          if (expression.getASTType() == IASTNode.FUNCTION_EXPRESSION) {
+            this.setInferredTypeXhr(expression, locator);
+          }
         }
       }
     }
@@ -77,10 +77,6 @@ class JQueryXhrInferer extends JQueryInferrerSupport {
 
   private XhrLocator getXhrLocator(String selector, int argumentCount) {
     return this.xhrMethods.getXhrLocator(selector, argumentCount);
-  }
-
-  private boolean isXhrSelector(String selector) {
-    return this.xhrMethods.isXhrSelector(selector);
   }
 
 }

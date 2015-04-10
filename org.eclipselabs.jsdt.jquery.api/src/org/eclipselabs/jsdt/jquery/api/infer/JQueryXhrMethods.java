@@ -12,9 +12,7 @@
  */
 package org.eclipselabs.jsdt.jquery.api.infer;
 
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class JQueryXhrMethods {
@@ -22,16 +20,12 @@ public class JQueryXhrMethods {
   public static final int NO_CALLBACK = -1;
 
   private final Map<XhrKey, XhrLocator> callbackFunctions;
-  private final Set<String> callbackSelectors;
 
   public JQueryXhrMethods() {
     this.callbackFunctions = new ConcurrentHashMap<XhrKey, XhrLocator>();
-    // REVIEW ConcurrentHashSet?
-    this.callbackSelectors = new HashSet<String>();
   }
 
   public void addCallbackMethod(String selector, int argumentAcount, int callbackFunctionIndex, int xhrArgumentIndex) {
-    this.callbackSelectors.add(selector);
     XhrKey key = new XhrKey(selector, argumentAcount);
     XhrLocator xhrLocator = new XhrLocator(callbackFunctionIndex, xhrArgumentIndex);
     this.callbackFunctions.put(key, xhrLocator);
@@ -40,10 +34,6 @@ public class JQueryXhrMethods {
   public XhrLocator getXhrLocator(String selector, int argumentCount) {
     XhrKey key = new XhrKey(selector, argumentCount);
     return this.callbackFunctions.get(key);
-  }
-
-  public boolean isXhrSelector(String selector) {
-    return this.callbackSelectors.contains(selector);
   }
   
   static final class XhrLocator {
