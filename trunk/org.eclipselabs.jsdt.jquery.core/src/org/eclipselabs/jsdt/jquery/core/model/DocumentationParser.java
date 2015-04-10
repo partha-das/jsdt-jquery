@@ -386,7 +386,7 @@ public class DocumentationParser {
   }
 
   private FunctionArgument parseArgument(XMLStreamReader reader) throws XMLStreamException {
-    String name = null, defaultValue = null;
+    String name = null, defaultValue = null, returnType = null;
     Set<String> types = new HashSet<String>(1);
     boolean optional = false;
     for (int i = 0; i < reader.getAttributeCount(); i++) {
@@ -400,6 +400,8 @@ public class DocumentationParser {
         optional = Boolean.parseBoolean(attributeValue);
       } else if ("default".equals(attributeName)) {
         defaultValue = attributeValue;
+      } else if ("rest".equals(attributeName)) {
+        // ignore
       } else {
         String message = "unexpected attribute \"" + attributeName + "\" expected one of: "
             +" \"name\", \"type\", \"optional\", \"default\"";
@@ -423,6 +425,8 @@ public class DocumentationParser {
         } else if ("argument".equals(localName)) {
           // TODO function argument
           this.parseArgument(reader);
+        } else if ("return".equals(localName)) {
+          returnType = this.parseStringContent("return", reader);
         } else {
           String message = "unexpected start of element \"" + localName +  "\" "
               + " expected one of: \"desc\", \"option\"";

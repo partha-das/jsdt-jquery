@@ -66,9 +66,16 @@ public class SimpleVersion implements Version {
 
   public static Version fromString(String s) {
     String versionString = s;
-    if (versionString.length() > 3) {
+    int stringLength = versionString.length();
+    if (stringLength > 3) {
       // 1.3.2 -> 1.3
-      versionString = versionString.substring(0, 3);
+      int firstDotIndex = s.indexOf('.');
+      if (firstDotIndex != -1) {
+        int secondDotIndex = s.indexOf('.', firstDotIndex + 1);
+        if (secondDotIndex != -1 && secondDotIndex < stringLength) {
+          versionString = s.substring(0, secondDotIndex);
+        }
+      }
     }
     Version version = JQueryApiPlugin.ALL_VERSIONS_MAP.get(versionString);
     if (version == null) {
