@@ -1,14 +1,14 @@
 var jQueryObject = { };
 jQueryObject.prototype = {
 /**
- * Add elements to the set of matched elements.
+ * Create a new jQuery object with elements added to the set of matched elements.
  * @since 1.0
  * @param {Selector} selector A string representing a selector expression to find additional elements to add to the set of matched elements.
  * @returns {jQueryObject}
  */
 add: function(selector) {},
 /**
- * Adds the specified class(es) to each of the set of matched elements.
+ * Adds the specified class(es) to each element in the set of matched elements.
  * @since 1.0
  * @param {String} className One or more space-separated classes to be added to the class attribute of each matched element.
  * @returns {jQueryObject}
@@ -58,7 +58,7 @@ attr: function(attributeName) {},
  * Set one or more attributes for the set of matched elements.
  * @since 1.0
  * @param {String} attributeName The name of the attribute to set.
- * @param {String} value A value to set for the attribute.
+ * @param {Number} value A value to set for the attribute.
  * @returns {jQueryObject}
  */
 attr: function(attributeName, value) {},
@@ -74,7 +74,7 @@ before: function(content, content) {},
  * Attach a handler to an event for the elements.
  * @since 1.0
  * @param {String} eventType A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
- * @param {Object} [eventData] An object containing data that will be passed to the event handler.
+ * @param {Anything} [eventData] An object containing data that will be passed to the event handler.
  * @param {Function} handler A function to execute each time the event is triggered.
  * @returns {jQueryObject}
  */
@@ -116,7 +116,6 @@ click: function(handler) {},
 clone: function(withDataAndEvents) {},
 /**
  * The DOM node context originally passed to <code>jQuery()</code>; if none was passed then context will likely be the document.
- * @deprecated 1.10
  * @type {Element}
  */
 context: null,
@@ -131,7 +130,7 @@ css: function(propertyName) {},
  * Set one or more CSS properties for the set of matched elements.
  * @since 1.0
  * @param {String} propertyName A CSS property name.
- * @param {String} value A value to set for the property.
+ * @param {Number} value A value to set for the property.
  * @returns {jQueryObject}
  */
 css: function(propertyName, value) {},
@@ -194,7 +193,7 @@ fadeOut: function(duration, complete) {},
 /**
  * Adjust the opacity of the matched elements.
  * @since 1.0
- * @param {String} duration A string or number determining how long the animation will run.
+ * @param {Number} duration A string or number determining how long the animation will run.
  * @param {Number} opacity A number between 0 and 1 denoting the target opacity.
  * @param {Function} [complete] A function to call once the animation is complete.
  * @returns {jQueryObject}
@@ -243,7 +242,7 @@ height: function() {},
 /**
  * Set the CSS height of every matched element.
  * @since 1.0
- * @param {String} value An integer representing the number of pixels, or an integer with an optional unit of measure appended (as a string).
+ * @param {Number} value An integer representing the number of pixels, or an integer with an optional unit of measure appended (as a string).
  * @returns {jQueryObject}
  */
 height: function(value) {},
@@ -367,7 +366,7 @@ load: function(handler) {},
  * Load data from the server and place the returned HTML into the matched element.
  * @since 1.0
  * @param {String} url A string containing the URL to which the request is sent.
- * @param {String} [data] A plain object or string that is sent to the server with the request.
+ * @param {PlainObject} [data] A plain object or string that is sent to the server with the request.
  * @param {Function} [complete] A callback function that is executed when the request completes.
  * @returns {jQueryObject}
  */
@@ -431,7 +430,7 @@ next: function(selector) {},
 /**
  * Remove elements from the set of matched elements.
  * @since 1.0
- * @param {Selector} selector A string containing a selector expression to match elements against.
+ * @param {Array} selector A string containing a selector expression, a DOM element, or an array of elements to match against the set.
  * @returns {jQueryObject}
  */
 not: function(selector) {},
@@ -614,7 +613,7 @@ text: function() {},
 /**
  * Set the content of each element in the set of matched elements to the specified text.
  * @since 1.0
- * @param {Boolean} text The text to set as the content of each matched element. When Number or Boolean is supplied, it will be converted to a String representation.
+ * @param {Number} text The text to set as the content of each matched element. When Number or Boolean is supplied, it will be converted to a String representation.
  * @returns {jQueryObject}
  */
 text: function(text) {},
@@ -636,7 +635,7 @@ toggle: function(handler, handler, handler) {},
  */
 toggle: function(duration, complete) {},
 /**
- * Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the switch argument.
+ * Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the state argument.
  * @since 1.0
  * @param {String} className One or more class names (separated by spaces) to be toggled for each element in the matched set.
  * @returns {jQueryObject}
@@ -673,7 +672,7 @@ val: function() {},
 /**
  * Set the value of each element in the set of matched elements.
  * @since 1.0
- * @param {String} value A string of text or an array of strings corresponding to the value of each matched element to set as selected/checked.
+ * @param {Number} value A string of text, a number, or an array of strings corresponding to the value of each matched element to set as selected/checked.
  * @returns {jQueryObject}
  */
 val: function(value) {},
@@ -686,14 +685,14 @@ width: function() {},
 /**
  * Set the CSS width of each element in the set of matched elements.
  * @since 1.0
- * @param {String} value An integer representing the number of pixels, or an integer along with an optional unit of measure appended (as a string).
+ * @param {Number} value An integer representing the number of pixels, or an integer along with an optional unit of measure appended (as a string).
  * @returns {jQueryObject}
  */
 width: function(value) {},
 /**
  * Wrap an HTML structure around each element in the set of matched elements.
  * @since 1.0
- * @param {jQuery} wrappingElement A selector, element, HTML string, or jQuery object specifying the structure to wrap around the matched elements.
+ * @param {jQuery} wrappingElement A selector, element, HTML string, or jQuery object specifying the structure to wrap around the matched elements. When you pass a jQuery collection containing more than one element, or a selector matching more than one element, the first element will be used.
  * @returns {jQueryObject}
  */
 wrap: function(wrappingElement) {},
@@ -715,6 +714,11 @@ data: {},
  * @type {Element}
  */
 delegateTarget: null,
+/**
+ * Indicates whether the META key was pressed when the event fired.
+ * @type {Boolean}
+ */
+metaKey: true,
 /**
  * The namespace specified when the event was triggered.
  * @type {String}
@@ -771,11 +775,6 @@ type: "",
  * @type {Number}
  */
 which: 1,
-/**
- * Indicates whether the META key was pressed when the event fired.
- * @type {Boolean}
- */
-metaKey: true,
 };
 /**
  * Accepts a string containing a CSS selector which is then used to match a set of elements.

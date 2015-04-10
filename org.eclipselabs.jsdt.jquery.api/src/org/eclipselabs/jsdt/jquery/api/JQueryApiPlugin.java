@@ -24,9 +24,11 @@ import org.osgi.framework.BundleContext;
 
 public final class JQueryApiPlugin extends Plugin {
 
-  static final int MAX_MINOR_1 = 10;
+  static final int MAX_MINOR_1 = 11;
   
   static final int MAX_MINOR_2 = 1;
+  
+  static final int MAX_MINOR_3 = 0;
 
   static final List<Version> ALL_VERSIONS;
   
@@ -36,6 +38,9 @@ public final class JQueryApiPlugin extends Plugin {
 
   static {
     List<Version> versions = new ArrayList<Version>(MAX_MINOR_1 + 1 + MAX_MINOR_2 + 1);
+    for (int i = MAX_MINOR_3; i >= 0; --i) {
+      versions.add(new SimpleVersion(3, i));
+    }
     for (int i = MAX_MINOR_2; i >= 0; --i) {
       versions.add(new SimpleVersion(2, i));
     }
